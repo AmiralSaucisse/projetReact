@@ -15,27 +15,11 @@ export default function App({navigation}) {
   const [user, setUser] = useState(null);
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Login">
           {(props) => <Login setUser={setUser} navigation={props.navigation} />}
       </Stack.Screen>
-      <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{
-            headerLeft: () => 
-              <TouchableOpacity activeOpacity={0.5}>
-                <Image
-                source={require('./assets/home.png')} />
-              </TouchableOpacity>,
-            headerRight: () => (
-              <View>
-              <Button title="Profile" onPress={() => navigation.navigate('Profile') }/>
-              <Button title="Logout" onPress={() => navigation.navigate('Login') }/>
-              </View>
-            ),
-          }}
-        />
+        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Weather" component={Weather} />
         <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
