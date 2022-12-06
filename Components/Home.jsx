@@ -1,12 +1,15 @@
-import { StyleSheet, Text, View, Button } from 'react-native';
-
+import { StyleSheet, Text, View, Button, SearchBar, Image, TouchableOpacity } from 'react-native';
 
 
 export default function Home({navigation}){
     return(
         <View>
-            <Text>aaaaaaaaaaaaaaaaaaaaaaa</Text>
-            <Button title="Profile" onPress={() => navigation.navigate('Profile') }/>
+            <Text>Recherchez une ville</Text>
+            <SearchBar>
+            <TouchableOpacity activeOpacity={0.5}>
+                <Image source={require('./assets/search.png')} />
+              </TouchableOpacity>
+            </SearchBar>
         </View>
     )
 }
