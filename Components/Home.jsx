@@ -25,7 +25,9 @@ Titlepage:{
 },
 
 iconSearch: { 
-    position: 'relative'
+    position: 'relative',
+    width : 50,
+    height : 50
  },
  
 InputSeach: {

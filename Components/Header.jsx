@@ -8,9 +8,17 @@ const Stack = createNativeStackNavigator();
 export function Header(){
     return(
         <View>
-            <Image source={'https://www.zupimages.net/up/22/49/w18k.png'} />
-            <Image source={'https://www.zupimages.net/up/22/49/ih0w.png'} />
-            <Image source={'https://www.zupimages.net/up/22/49/iu2v.png'} />
+            <Image style={styles.icon} source={'https://www.zupimages.net/up/22/49/w18k.png'} />
+            <Image style={styles.icon} source={'https://www.zupimages.net/up/22/49/ih0w.png'} />
+            <Image style={styles.icon} source={'https://www.zupimages.net/up/22/49/iu2v.png'} />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    icon: { 
+        position: 'relative',
+        width : 50,
+        height : 50
+     }
+    })
