@@ -10,7 +10,7 @@ export default function Home({navigation}){
         <View>
             <Text style={styles.Titlepage} >Recherchez une ville</Text>
             <TouchableOpacity style={styles.iconSearch} activeOpacity={0.5}>
-                <Image source={"https://zupimages.net/up/22/49/2ws7.png"} /> 
+                <Image source={'https://zupimages.net/up/22/49/2ws7.png'} /> 
             </TouchableOpacity>
             <TextInput style={styles.InputSeach} placeholder='Paris' />
               
