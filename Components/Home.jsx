@@ -89,45 +89,46 @@ export default function Home({navigation}){
 }
 
 const styles = StyleSheet.create({
-Titlepage:{
-    fontSize: 20,
-    marginTop: 10,
-    marginBottom: 5,
-    marginLeft: 15,
-    marginRight: 15
-},
-
-iconSearch: { 
-    position: 'relative',
-    width : 25,
-    height : 25
- },
- 
-InputSearch: {
-    flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
-    border: "1px solid #ff6e27",
-    borderRadius: 16,
-    alignItems: "center",
-    flexDirection: "row"
-},
-Input: {
-    flex: 1,
-    alignItems: "strech"
-},
-iconhome: {
-    position: 'relative',
-    width : 40,
-    height : 40
-},
-header: {
-    flexDirection: "row",
-    alignItems: "stretch",
-    margin: 5
-},
-headerRight: {
-    flexDirection: "row",
-    alignContent: "right"
-}
+    Titlepage:{
+        fontSize: 20,
+        marginTop: 10,
+        marginBottom: 5,
+        marginLeft: 15,
+        marginRight: 15
+    },
+    
+    iconSearch: { 
+        position: 'relative',
+        width : 25,
+        height : 25
+     },
+     
+    InputSearch: {
+        flex: 1,
+        marginLeft: 10,
+        marginRight: 10,
+        border: "1px solid #ff6e27",
+        borderRadius: 16,
+        alignItems: "center",
+        flexDirection: "row"
+    },
+    Input: {
+        flex: 1,
+        alignItems: "strech"
+    },
+    iconhome: {
+        position: 'relative',
+        width : 40,
+        height : 40
+    },
+    header: {
+        flexDirection: "row",
+        alignItems: "stretch",
+        margin: 5,
+        justifyContent: 'space-between'
+    },
+    headerRight: {
+        flexDirection: "row",
+        alignContent: "right"
+    }
 })
