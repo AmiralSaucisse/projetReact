@@ -1,4 +1,5 @@
-import { StyleSheet, Text, TextInput, View, Button, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, Image, TouchableOpacity  } from 'react-native';
+import { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -6,17 +7,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 export default function Home({navigation}){
-    return(     
-        <View>
-            <NavigationContainer.setOptions />
-            <Text style={styles.Titlepage} >Recherchez une ville</Text>
-            <TouchableOpacity style={styles.InputSearch} activeOpacity={0.5}> 
-            <Image style={styles.iconSearch} source={require('../assets/search.png')} />
-            <TextInput style={styles.Input} placeholder="Rechercher" />                
-            </TouchableOpacity>  
-        </View>
-    )
-}
+    const [cityIsValid, setCityIsValid] = useState(false);
+    const [city, setCity] = useState([]);
+    const [cityfav, setCityfav] = useState([]);
+
+   
 
 function HomeNav({ navigation }) {
     React.useLayoutEffect(() => {
@@ -38,6 +33,48 @@ function HomeNav({ navigation }) {
       });
     }, [navigation]);}
 
+    function Card({city}){
+        return(
+            <View style={styles.card}>
+                <View style={styles.cardHeader}>
+                    <Text style={ styles.cardHeaderText }>{cityfav.name}</Text>
+                </View>
+                <View style={styles.cardBody}>
+                    <View style={styles.cardIcon}>
+                        <Image source={{uri: cityfav.icon}} style={{ width: 70, height: 70 }} />
+                    </View>
+                    <View style={styles.cardDescription}>
+                        <Text>{cityfav.description}</Text>
+                    </View>
+                </View>
+            </View>
+        );
+    }
+
+
+    function getMeteo(city) {
+        getMeteoApi(city).then(data => {
+                if (data.error) {
+                    setCityIsValid(false);
+                } else {
+                    setMeteo(data)
+                    setCityIsValid(true);
+                }
+            })
+    }
+
+
+    return(     
+        <View>
+            <View header={this.HomeNav(navigation)} />
+            <Text style={styles.Titlepage} >Recherchez une ville</Text>
+            <TouchableOpacity style={styles.InputSearch} activeOpacity={0.5}> 
+            <Image style={styles.iconSearch} source={require('../assets/search.png')} onPress={() => getMeteo(value)}/>
+            <TextInput style={styles.Input} placeholder="Rechercher" onChangeText={value => setCity(value)} />                
+            </TouchableOpacity>  
+        </View>
+    )
+}
 
 const styles = StyleSheet.create({
 Titlepage:{
