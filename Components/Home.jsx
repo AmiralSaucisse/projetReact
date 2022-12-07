@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TextInput, View, Button, Image, TouchableOpacity  } from 'react-native';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -9,29 +9,29 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export default function Home({navigation}){
     const [cityIsValid, setCityIsValid] = useState(false);
     const [city, setCity] = useState([]);
-    const [cityfav, setCityfav] = useState([]);
+    const [favoris, setFavoris] = useState([]);
 
    
-
-function HomeNav({ navigation }) {
-    React.useLayoutEffect(() => {
-      navigation.setOptions({
-        headerLeft: () => 
-            <TouchableOpacity activeOpacity={0.5}>
-              <Image style={styles.iconhome}  source={{ uri:'https://www.zupimages.net/up/22/49/w18k.png' }} />
-            </TouchableOpacity>,
-        headerRight: () => (
-            <View>
-                <TouchableOpacity activeOpacity={0.5}>
-                    <Image style={styles.iconhome} source={{ uri:'https://www.zupimages.net/up/22/49/ih0w.png' }} />
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5}>
-                    <Image style={styles.iconhome} source={{ uri:'https://www.zupimages.net/up/22/49/iu2v.png' }} />
-                </TouchableOpacity>
-            </View>
-        ),
-      });
-    }, [navigation]);}
+//scrapped, pas assez de tempsq pour faire un header correct
+//function HomeNav({ navigation }) {
+//    useLayoutEffect(() => {
+//      navigation.setOptions({
+//        headerLeft: () => 
+//            <TouchableOpacity activeOpacity={0.5}>
+//             <Image style={styles.iconhome}  source={{ uri:'https://www.zupimages.net/up/22/49/w18k.png' }} />
+//           </TouchableOpacity>,
+//        headerRight: () => (
+//            <View>
+//                <TouchableOpacity activeOpacity={0.5}>
+//                    <Image style={styles.iconhome} source={{ uri:'https://www.zupimages.net/up/22/49/ih0w.png' }} />
+//                </TouchableOpacity>
+//                <TouchableOpacity activeOpacity={0.5}>
+//                    <Image style={styles.iconhome} source={{ uri:'https://www.zupimages.net/up/22/49/iu2v.png' }} />
+//                </TouchableOpacity>
+//            </View>
+//        ),
+//      });
+//    }, [navigation]);}
 
     function Card({city}){
         return(
@@ -66,7 +66,19 @@ function HomeNav({ navigation }) {
 
     return(     
         <View>
-            <View header={this.HomeNav(navigation)} />
+            <View style={styles.header}>
+                <TouchableOpacity activeOpacity={0.5}>
+                    <Image style={styles.iconhome}  source={{ uri:'https://www.zupimages.net/up/22/49/w18k.png' }} />
+                </TouchableOpacity>
+                <View style={styles.headerRight}>
+                    <TouchableOpacity activeOpacity={0.5}>
+                        <Image style={styles.iconhome} source={{ uri:'https://www.zupimages.net/up/22/49/ih0w.png' }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5}>
+                        <Image style={styles.iconhome} source={{ uri:'https://www.zupimages.net/up/22/49/iu2v.png' }} />
+                    </TouchableOpacity>
+                </View>
+            </View>
             <Text style={styles.Titlepage} >Recherchez une ville</Text>
             <TouchableOpacity style={styles.InputSearch} activeOpacity={0.5}> 
             <Image style={styles.iconSearch} source={require('../assets/search.png')} onPress={() => getMeteo(value)}/>
@@ -79,7 +91,7 @@ function HomeNav({ navigation }) {
 const styles = StyleSheet.create({
 Titlepage:{
     fontSize: 20,
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 5,
     marginLeft: 15,
     marginRight: 15
@@ -106,7 +118,16 @@ Input: {
 },
 iconhome: {
     position: 'relative',
-    width : 25,
-    height : 25
+    width : 40,
+    height : 40
+},
+header: {
+    flexDirection: "row",
+    alignItems: "stretch",
+    margin: 5
+},
+headerRight: {
+    flexDirection: "row",
+    alignContent: "right"
 }
 })

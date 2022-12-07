@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Text, View, TextInput, Pressable, StyleSheet } from 'react-native';
+import { Text, View, TextInput, Pressable, StyleSheet, Image } from 'react-native';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../Service/firebase';
 
@@ -32,6 +32,8 @@ export default function Login({ setUser, navigation }) {
 
 
     return (
+        <View style={styles.loginpage}>
+            <Image style={styles.imglogin} source={{ uri:'https://weather.training-dev.fr/picture/meteoJetLag.png' }} />
         <View style={styles.form}>
             { accountCreated &&
                 <View>
@@ -65,15 +67,19 @@ export default function Login({ setUser, navigation }) {
                 </View>
             }
         </View>
+    </View>
     );
 }
 
 const styles = StyleSheet.create({
-    formGroup: {
+    loginpage: {
         flex: 1,
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'center',
         marginBottom: "10px"
+    },
+    formGroup: {
+        alignItems: 'strech',
     },
     form: {
         padding: "20px",
@@ -90,17 +96,23 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     link: {
-        color: "blue",
+        color: "#ff6e27",
         paddingTop: "10px",
     },
     button: {
-        backgroundColor: "#1565c0",
+        backgroundColor: "#ff6e27",
         padding: "10px",
+        margin: 5,
         alignItems: "center",
         justifyContent: "center",
         borderRadius: "8px",
     },
     buttonText: {
         color: "white"
+    },
+    imglogin: {
+        position: 'relative',
+        height: 200,
+        width: 200
     }
 });
