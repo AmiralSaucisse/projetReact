@@ -2,6 +2,8 @@ import { StyleSheet, Text, TextInput, View, Button, Image, TouchableOpacity  } f
 import { useState, useEffect, useLayoutEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NativeScreenNavigationContainer } from 'react-native-screens';
+import { getMeteoApi } from '../Service/weatherAPI';
 
 
 
@@ -10,6 +12,7 @@ export default function Home({navigation}){
     const [cityIsValid, setCityIsValid] = useState(false);
     const [city, setCity] = useState([]);
     const [favoris, setFavoris] = useState([]);
+    const [meteo, setMeteo] = useState({});
 
    
 //scrapped, pas assez de tempsq pour faire un header correct
@@ -58,6 +61,7 @@ export default function Home({navigation}){
                     setCityIsValid(false);
                 } else {
                     setMeteo(data)
+                    navigation.navigate('Weather')
                     setCityIsValid(true);
                 }
             })
@@ -67,21 +71,23 @@ export default function Home({navigation}){
     return(     
         <View>
             <View style={styles.header}>
-                <TouchableOpacity activeOpacity={0.5}>
+                <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.navigate('Home')}>
                     <Image style={styles.iconhome}  source={{ uri:'https://www.zupimages.net/up/22/49/w18k.png' }} />
                 </TouchableOpacity>
                 <View style={styles.headerRight}>
-                    <TouchableOpacity activeOpacity={0.5}>
+                    <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.navigate('Profile')}>
                         <Image style={styles.iconhome} source={{ uri:'https://www.zupimages.net/up/22/49/ih0w.png' }} />
                     </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.5}>
+                    <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.navigate('Login')}>
                         <Image style={styles.iconhome} source={{ uri:'https://www.zupimages.net/up/22/49/iu2v.png' }} />
                     </TouchableOpacity>
                 </View>
             </View>
             <Text style={styles.Titlepage} >Recherchez une ville</Text>
-            <TouchableOpacity style={styles.InputSearch} activeOpacity={0.5}> 
-            <Image style={styles.iconSearch} source={require('../assets/search.png')} onPress={() => getMeteo(value)}/>
+            <TouchableOpacity style={styles.InputSearch} activeOpacity={0.5} > 
+                <TouchableOpacity onPress={() => getMeteo(city)}>
+                    <Image style={styles.iconSearch} source={require('../assets/search.png')} />
+                </TouchableOpacity>
             <TextInput style={styles.Input} placeholder="Rechercher" onChangeText={value => setCity(value)} />                
             </TouchableOpacity>  
         </View>

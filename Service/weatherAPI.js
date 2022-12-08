@@ -1,7 +1,8 @@
 import Home from "../Components/Home";
+import { Meteo } from "./Meteo";
 
 export function getMeteoApi(city) {
-    return fetch("http://localhost:3000/weather/?city=" + city)
+    return fetch("http://localhost:3000/api/weather/" + city)
         .then(result => result.json())
         .then(data => {
             if (data.error) {
